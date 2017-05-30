@@ -1,0 +1,10 @@
+﻿{
+  "dependencies": {
+    "NETStandard.Library": "1.6.1",
+    "Newtonsoft.Json": "10.0.2",
+    "System.Net.Requests": "4.3.0"
+  },
+  "frameworks": {
+    "netstandard1.3": {}
+  }
+}

@@ -117,3 +117,5 @@ Doc/Help/
 .DS_Store
 *.swp
 tmp/
+*.userprefs
+/TinCan/project.lock.json

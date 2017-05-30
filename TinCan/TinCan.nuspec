@@ -12,10 +12,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>See https://github.com/RusticiSoftware/TinCan.NET/releases</releaseNotes>
-    <copyright>Copyright 2014</copyright>
+    <copyright>Copyright 2017</copyright>
     <tags>TinCan TinCanAPI xAPI e-learning elearning SCORM</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="8.0" />
+      <dependency id="Newtonsoft.Json" version="10.0.2" />
     </dependencies>
   </metadata>
 </package>
