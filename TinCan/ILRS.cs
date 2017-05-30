@@ -47,6 +47,7 @@ namespace TinCan
         Task<ProfileKeysLRSResponse> RetrieveAgentProfileIds(Agent agent);
         Task<AgentProfileLRSResponse> RetrieveAgentProfile(String id, Agent agent);
         Task<LRSResponse> SaveAgentProfile(AgentProfileDocument profile);
+        Task<LRSResponse> ForceSaveAgentProfile(AgentProfileDocument profile);
         Task<LRSResponse> DeleteAgentProfile(AgentProfileDocument profile);
     }
 }

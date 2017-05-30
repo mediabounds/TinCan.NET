@@ -17,19 +17,53 @@ using System;
 
 namespace TinCan.LRSResponses
 {
-    //
-    // this isn't abstract because some responses for an LRS won't have content
-    // so in those cases we can get by just returning this base response
-    //
-    public class LRSResponse
-    {
-        public Boolean success { get; set; }
-        public Exception httpException { get; set; }
-        public String errMsg { get; set; }
+	//
+	// this isn't abstract because some responses for an LRS won't have content
+	// so in those cases we can get by just returning this base response
+	//
+	public class LRSResponse
+	{
+		public bool success { get; set; }
+		public Exception httpException { get; set; }
+		public LRSResponseError? Error { get; protected set; }
+		public string errMsg
+		{
+			get
+			{
+				if (Error == null)
+				{
+					return null;
+				}
 
-        public void SetErrMsgFromBytes(byte[] content)
-        {
-            errMsg = System.Text.Encoding.UTF8.GetString(content);
-        }
-    }
+				return Error?.Message;
+			}
+		}
+
+		public void SetErrMsgFromBytes(byte[] content, int code = -1)
+		{
+			string message = null;
+			if (content != null)
+			{
+				message = System.Text.Encoding.UTF8.GetString(content, 0, content.Length);
+			}
+			Error = new LRSResponseError(message, code);
+		}
+
+		public override string ToString()
+		{
+			return string.Format("[LRSResponse: success={0}, httpException={1}, errMsg={2}]", success, httpException, errMsg);
+		}
+	}
+
+	public struct LRSResponseError
+	{
+		public readonly string Message;
+		public readonly int Code;
+
+		public LRSResponseError(string message, int code = -1)
+		{
+			Message = message;
+			Code = code;
+		}
+	}
 }

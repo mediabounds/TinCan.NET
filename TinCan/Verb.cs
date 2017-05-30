@@ -14,6 +14,7 @@
     limitations under the License.
 */
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using TinCan.Json;
 
@@ -32,7 +33,7 @@ namespace TinCan
         {
             if (jobj["id"] != null)
             {
-                id = new Uri(jobj.Value<String>("id"));
+                id = new Uri(jobj.Value<string>("id"));
             }
             if (jobj["display"] != null)
             {
@@ -45,13 +46,20 @@ namespace TinCan
             id = uri;
         }
 
-        public Verb(String str)
+        public Verb(Uri uri, string defaultLanguage, string defaultTerm)
+        {
+            id = uri;
+            display = new LanguageMap();
+            display.Add(defaultLanguage, defaultTerm);
+        }
+
+        public Verb(string str)
         {
             id = new Uri (str);
         }
 
         public override JObject ToJObject(TCAPIVersion version) {
-            JObject result = new JObject();
+            var result = new JObject();
             if (id != null)
             {
                 result.Add("id", id.ToString());
@@ -69,5 +77,17 @@ namespace TinCan
         {
             return new Verb(jobj);
         }
+
+        public override string ToString()
+        {
+            return string.Format("[Verb: id={0}, display={1}]", id, display);
+        }
+
+        public static readonly Verb Completed = new Verb(new Uri("http://adlnet.gov/expapi/verbs/completed"), "en-US", "completed");
+        public static readonly Verb Terminated = new Verb(new Uri("http://adlnet.gov/expapi/verbs/terminated"), "en-US", "terminated");
+        public static readonly Verb Launched = new Verb(new Uri("http://adlnet.gov/expapi/verbs/launched"), "en-US", "launched");
+        public static readonly Verb Suspended = new Verb(new Uri("http://adlnet.gov/expapi/verbs/suspended"), "en-US", "suspended");
+        public static readonly Verb Favorited = new Verb(new Uri("http://activitystrea.ms/schema/1.0/favorite"), "en-US", "favorited");
+        public static readonly Verb Unfavorited = new Verb(new Uri("http://activitystrea.ms/schema/1.0/unfavorite"), "en-US", "unfavorited");
     }
 }
