@@ -10,7 +10,7 @@ http://tincanapi.com/
 
 Requires .NET 3.5 or later.
 
-### .NET STandard 1.3
+### .NET Standard 1.3
 Float, LLC has updated the project to support the [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/library) library.
 
 #### Building Nuget
