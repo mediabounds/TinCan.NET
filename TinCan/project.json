@@ -1,7 +1,6 @@
 ﻿{
   "dependencies": {
-    "Newtonsoft.Json": "10.0.3",
-    "System.Net.Requests": "4.3.0"
+    "Newtonsoft.Json": "10.0.3"
   },
   "frameworks": {
     "netstandard1.1": {}

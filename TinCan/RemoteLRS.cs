@@ -165,7 +165,7 @@ namespace TinCan
             {
                 webReq.Content = new ByteArrayContent(req.content);
                 webReq.Content.Headers.Add("Content-Length", req.content.Length.ToString());
-                webReq.Content.Headers.Add("Content-Type", req.contentType);
+                webReq.Content.Headers.Add("Content-Type", req.contentType ?? "text/plain");
             }
 
             MyHTTPResponse resp;
@@ -175,24 +175,18 @@ namespace TinCan
                 var response = await client.SendAsync(webReq).ConfigureAwait(false);
                 resp = new MyHTTPResponse(response);
             }
-            catch (WebException ex)
+            catch (HttpRequestException ex)
             {
-                if (ex.Response != null)
+                resp = new MyHTTPResponse();
+
+                if (ex.Message != null)
                 {
-                    resp = new MyHTTPResponse();
-
-                    using (var stream = ex.Response.GetResponseStream())
-                    {
-                        resp.content = ReadFully(stream, (int) ex.Response.ContentLength);
-                    }
-
-                    resp.contentType = ex.Response.ContentType;
-                    resp.ex = ex;
+                    resp.content = Encoding.UTF8.GetBytes(ex.Message);
+                    resp.contentType = "text/plain";
                 }
                 else
                 {
-                    resp = new MyHTTPResponse();
-                    resp.content = Encoding.UTF8.GetBytes("Web exception without '.Response'");
+                    resp.content = Encoding.UTF8.GetBytes("HttpRequestException without message");
                 }
                 resp.ex = ex;
             }
