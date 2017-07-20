@@ -15,7 +15,7 @@
     <copyright>Copyright 2017</copyright>
     <tags>TinCan TinCanAPI xAPI e-learning elearning SCORM</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="10.0.2" />
+      <dependency id="Newtonsoft.Json" version="10" />
     </dependencies>
   </metadata>
 </package>
