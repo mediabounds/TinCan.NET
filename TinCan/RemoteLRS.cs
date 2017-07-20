@@ -752,11 +752,13 @@ namespace TinCan
                 return r;
             }
 
+            profile.content = resp?.content;
+            profile.contentType = resp?.contentType;
+            profile.etag = resp?.etag;
+
             r.success = true;
-            r.content = new AgentProfileDocument();
-            r.content.content = resp?.content;
-            r.content.contentType = resp?.contentType;
-            r.content.etag = resp?.etag;
+            r.content = profile;
+
             return r;
         }
 
