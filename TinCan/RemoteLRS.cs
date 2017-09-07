@@ -157,6 +157,11 @@ namespace TinCan
             {
                 foreach (var entry in req.headers)
                 {
+                    if (client.DefaultRequestHeaders.Contains(entry.Key))
+                    {
+                        throw new InvalidOperationException($"Tried to add duplicate entry {entry.Key} to request headers with value {entry.Value}; previous value {client.DefaultRequestHeaders.GetValues(entry.Key)}");
+                    }
+
                     client.DefaultRequestHeaders.Add(entry.Key, entry.Value);
                 }
             }
