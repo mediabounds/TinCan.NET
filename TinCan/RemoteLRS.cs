@@ -20,6 +20,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using TinCan.Documents;
@@ -29,6 +30,7 @@ namespace TinCan
 {
     public class RemoteLRS : ILRS
     {
+        SemaphoreSlim makeRequestSemaphore = new SemaphoreSlim(1, 1);
         public Uri endpoint { get; set; }
         public TCAPIVersion version { get; set; }
         public string auth { get; set; }
@@ -145,6 +147,8 @@ namespace TinCan
 
             var webReq = new HttpRequestMessage(req.method, new Uri(url));
 
+            // We only have one client. We cannot modify it while its in use.
+            await makeRequestSemaphore.WaitAsync();
             client.DefaultRequestHeaders.Clear();
             client.DefaultRequestHeaders.Add("X-Experience-API-Version", version.ToString());
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(req.contentType ?? "application/content-stream"));
@@ -159,6 +163,7 @@ namespace TinCan
                 {
                     if (client.DefaultRequestHeaders.Contains(entry.Key))
                     {
+                        makeRequestSemaphore.Release();
                         throw new InvalidOperationException($"Tried to add duplicate entry {entry.Key} to request headers with value {entry.Value}; previous value {client.DefaultRequestHeaders.GetValues(entry.Key)}");
                     }
 
@@ -194,6 +199,10 @@ namespace TinCan
                     resp.content = Encoding.UTF8.GetBytes("HttpRequestException without message");
                 }
                 resp.ex = ex;
+            }
+            finally
+            {
+                makeRequestSemaphore.Release();
             }
 
             return resp;
