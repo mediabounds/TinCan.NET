@@ -76,5 +76,10 @@ namespace TinCan
         {
             return new Activity(jobj);
         }
+
+        public override string ToString()
+        {
+            return string.Format("[Activity: id={0}, definition={1}]", id, definition);
+        }
     }
 }

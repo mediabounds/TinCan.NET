@@ -33,11 +33,11 @@ namespace TinCan
         Task<StatementsResultLRSResponse> QueryStatements(StatementsQuery query);
         Task<StatementsResultLRSResponse> MoreStatements(StatementsResult result);
 
-        Task<ProfileKeysLRSResponse> RetrieveStateIds(Activity activity, Agent agent, Nullable<Guid> registration = null);
-        Task<StateLRSResponse> RetrieveState(String id, Activity activity, Agent agent, Nullable<Guid> registration = null);
+        Task<ProfileKeysLRSResponse> RetrieveStateIds(Activity activity, Agent agent, Guid? registration = null);
+        Task<StateLRSResponse> RetrieveState(String id, Activity activity, Agent agent, Guid? registration = null);
         Task<LRSResponse> SaveState(StateDocument state);
         Task<LRSResponse> DeleteState(StateDocument state);
-        Task<LRSResponse> ClearState(Activity activity, Agent agent, Nullable<Guid> registration = null);
+        Task<LRSResponse> ClearState(Activity activity, Agent agent, Guid? registration = null);
 
         Task<ProfileKeysLRSResponse> RetrieveActivityProfileIds(Activity activity);
         Task<ActivityProfileLRSResponse> RetrieveActivityProfile(String id, Activity activity);

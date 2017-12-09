@@ -18,6 +18,11 @@ namespace TinCan.LRSResponses
 {
     public class StatementsResultLRSResponse : LRSResponse
     {
-        public TinCan.StatementsResult content { set; get; }
+        public StatementsResult content { set; get; }
+
+        public override string ToString()
+        {
+            return string.Format("[StatementsResultLRSResponse: content={0}, base={1}]", content, base.ToString());
+        }
     }
 }

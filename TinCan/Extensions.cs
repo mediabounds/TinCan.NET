@@ -22,7 +22,7 @@ namespace TinCan
 {
     public class Extensions : JsonModel
     {
-        private Dictionary<Uri, JToken> map;
+        readonly Dictionary<Uri, JToken> map;
 
         public Extensions()
         {
@@ -33,13 +33,13 @@ namespace TinCan
         {
             foreach (var item in jobj)
             {
-                map.Add(new Uri(item.Key), item.Value); 
+                map.Add(new Uri(item.Key), item.Value);
             }
         }
 
         public override JObject ToJObject(TCAPIVersion version)
         {
-            JObject result = new JObject();
+            var result = new JObject();
             foreach (KeyValuePair<Uri, JToken> entry in map)
             {
                 result.Add(entry.Key.ToString(), entry.Value);
@@ -50,7 +50,7 @@ namespace TinCan
 
         public Boolean isEmpty()
         {
-            return map.Count > 0 ? false : true;
+            return map.Count <= 0;
         }
 
         public static explicit operator Extensions(JObject jobj)

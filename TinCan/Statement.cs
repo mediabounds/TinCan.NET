@@ -21,22 +21,21 @@ namespace TinCan
 {
     public class Statement : StatementBase
     {
-        // TODO: put in common location
-        private const String ISODateTimeFormat = "o";
+        const string ISODateTimeFormat = "o";
 
-        public Nullable<Guid> id { get; set; }
-        public Nullable<DateTime> stored { get; set; }
+        public Guid? id { get; set; }
+        public DateTime? stored { get; set; }
         public Agent authority { get; set; }
         public TCAPIVersion version { get; set; }
         //public List<Attachment> attachments { get; set; }
 
-        public Statement() : base() { }
+        public Statement() { }
         public Statement(StringOfJSON json) : this(json.toJObject()) { }
 
         public Statement(JObject jobj) : base(jobj) {
             if (jobj["id"] != null)
             {
-                id = new Guid(jobj.Value<String>("id"));
+                id = new Guid(jobj.Value<string>("id"));
             }
             if (jobj["stored"] != null)
             {
@@ -48,14 +47,14 @@ namespace TinCan
             }
             if (jobj["version"] != null)
             {
-                version = (TCAPIVersion)jobj.Value<String>("version");
+                version = (TCAPIVersion)jobj.Value<string>("version");
             }
 
             //
             // handle SubStatement as target which isn't provided by StatementBase
             // because SubStatements are not allowed to nest
             //
-            if (jobj["object"] != null && (String)jobj["object"]["objectType"] == SubStatement.OBJECT_TYPE)
+            if (jobj["object"] != null && (string)jobj["object"]["objectType"] == SubStatement.OBJECT_TYPE)
             {
                 target = (SubStatement)jobj.Value<JObject>("object");
             }
@@ -63,26 +62,26 @@ namespace TinCan
 
         public override JObject ToJObject(TCAPIVersion version)
         {
-            JObject result = base.ToJObject(version);
+            var resultObject = base.ToJObject(version);
 
             if (id != null)
             {
-                result.Add("id", id.ToString());
+                resultObject.Add("id", id.ToString());
             }
             if (stored != null)
             {
-                result.Add("stored", stored.Value.ToString(ISODateTimeFormat));
+                resultObject.Add("stored", stored.Value.ToString(ISODateTimeFormat));
             }
             if (authority != null)
             {
-                result.Add("authority", authority.ToJObject(version));
+                resultObject.Add("authority", authority.ToJObject(version));
             }
             if (version != null)
             {
-                result.Add("version", version.ToString());
+                resultObject.Add("version", version.ToString());
             }
 
-            return result;
+            return resultObject;
         }
 
         public void Stamp()
@@ -95,6 +94,11 @@ namespace TinCan
             {
                 timestamp = DateTime.UtcNow;
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[Statement: id={0}, stored={1}, authority={2}, version={3}, base={4}]", id, stored, authority, version, base.ToString());
         }
     }
 }

@@ -22,8 +22,8 @@ namespace TinCan
 {
     public class Group : Agent
     {
-        public static readonly new String OBJECT_TYPE = "Group";
-        public override String ObjectType { get { return OBJECT_TYPE; } }
+        public static readonly new string OBJECT_TYPE = "Group";
+        public override string ObjectType { get { return OBJECT_TYPE; } }
 
         public List<Agent> member { get; set; }
 

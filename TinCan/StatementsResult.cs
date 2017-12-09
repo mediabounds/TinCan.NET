@@ -23,10 +23,10 @@ namespace TinCan
     public class StatementsResult
     {
         public List<Statement> statements { get; set; }
-        public String more { get; set; }
+        public string more { get; set; }
 
         public StatementsResult() {}
-        public StatementsResult(String str) : this(new StringOfJSON(str)) {}
+        public StatementsResult(string str) : this(new StringOfJSON(str)) {}
         public StatementsResult(StringOfJSON json) : this(json.toJObject()) {}
         public StatementsResult(List<Statement> statements)
         {
@@ -45,8 +45,13 @@ namespace TinCan
             }
             if (jobj["more"] != null)
             {
-                more = jobj.Value<String>("more");
+                more = jobj.Value<string>("more");
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[StatementsResult: statements={0}, more={1}]", string.Join("|", statements), more);
         }
     }
 }

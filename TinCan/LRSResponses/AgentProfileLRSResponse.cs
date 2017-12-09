@@ -18,6 +18,6 @@ namespace TinCan.LRSResponses
 {
     public class AgentProfileLRSResponse : LRSResponse
     {
-        public TinCan.Documents.AgentProfileDocument content { set; get; }
+        public Documents.AgentProfileDocument content { set; get; }
     }
 }

@@ -93,5 +93,10 @@ namespace TinCan
         {
             return new Agent(jobj);
         }
+
+        public override string ToString()
+        {
+            return string.Format("[Agent: name={0}, mbox={1}, openid={2}, account={3}]", name, mbox, openid, account);
+        }
     }
 }

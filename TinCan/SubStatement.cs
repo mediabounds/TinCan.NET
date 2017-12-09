@@ -21,8 +21,8 @@ namespace TinCan
 {
     public class SubStatement : StatementBase, StatementTarget
     {
-        public static readonly String OBJECT_TYPE = "SubStatement";
-        public String ObjectType { get { return OBJECT_TYPE; } }
+        public static readonly string OBJECT_TYPE = "SubStatement";
+        public string ObjectType { get { return OBJECT_TYPE; } }
 
         public SubStatement() {}
 
@@ -31,11 +31,11 @@ namespace TinCan
         public SubStatement(JObject jobj) : base(jobj) { }
 
         public override JObject ToJObject(TCAPIVersion version) {
-            var result = base.ToJObject(version);
+            var resultObject = base.ToJObject(version);
 
-            result.Add("objectType", ObjectType);
+            resultObject.Add("objectType", ObjectType);
 
-            return result;
+            return resultObject;
         }
 
         public static explicit operator SubStatement(JObject jobj)

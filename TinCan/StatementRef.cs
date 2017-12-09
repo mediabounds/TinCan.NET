@@ -21,10 +21,10 @@ namespace TinCan
 {
     public class StatementRef : JsonModel, StatementTarget
     {
-        public static readonly String OBJECT_TYPE = "StatementRef";
-        public String ObjectType { get { return OBJECT_TYPE; } }
+        public static readonly string OBJECT_TYPE = "StatementRef";
+        public string ObjectType { get { return OBJECT_TYPE; } }
 
-        public Nullable<Guid> id { get; set; }
+        public Guid? id { get; set; }
 
         public StatementRef() {}
         public StatementRef(Guid id)
@@ -38,12 +38,12 @@ namespace TinCan
         {
             if (jobj["id"] != null)
             {
-                id = new Guid(jobj.Value<String>("id"));
+                id = new Guid(jobj.Value<string>("id"));
             }
         }
 
         public override JObject ToJObject(TCAPIVersion version) {
-            JObject result = new JObject();
+            var result = new JObject();
             result.Add("objectType", ObjectType);
 
             if (id != null)

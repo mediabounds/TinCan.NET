@@ -14,20 +14,21 @@
     limitations under the License.
 */
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using TinCan.Json;
 
 namespace TinCan
 {
-    public class LanguageMap : JsonModel
+    public class LanguageMap : JsonModel, IEnumerable<KeyValuePair<string, string>>
     {
-        private Dictionary<String, String> map;
+        readonly Dictionary<string, string> map;
 
         public LanguageMap() {
-            map = new Dictionary<String, String>();
+            map = new Dictionary<string, string>();
         }
-        public LanguageMap(Dictionary<String, String> map)
+        public LanguageMap(Dictionary<string, string> map)
         {
             this.map = map;
         }
@@ -35,15 +36,15 @@ namespace TinCan
         public LanguageMap(StringOfJSON json) : this(json.toJObject()) { }
         public LanguageMap(JObject jobj) : this()
         {
-            foreach (KeyValuePair<String,JToken> entry in jobj) {
-                map.Add(entry.Key, (String)entry.Value);
+            foreach (KeyValuePair<string,JToken> entry in jobj) {
+                map.Add(entry.Key, (string)entry.Value);
             }
         }
 
         public override JObject ToJObject(TCAPIVersion version)
         {
-            JObject result = new JObject();
-            foreach (KeyValuePair<String, String> entry in this.map)
+            var result = new JObject();
+            foreach (KeyValuePair<string, string> entry in this.map)
             {
                 result.Add(entry.Key, entry.Value);
             }
@@ -53,10 +54,10 @@ namespace TinCan
 
         public Boolean isEmpty()
         {
-            return map.Count > 0 ? false : true;
+            return map.Count <= 0;
         }
 
-        public void Add(String lang, String value)
+        public void Add(string lang, string value)
         {
             this.map.Add(lang, value);
         }
@@ -64,6 +65,21 @@ namespace TinCan
         public static explicit operator LanguageMap(JObject jobj)
         {
             return new LanguageMap(jobj);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[LanguageMap: {0}]", string.Join(",", map));
+        }
+
+        public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
+        {
+            return map.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return map.GetEnumerator();
         }
     }
 }

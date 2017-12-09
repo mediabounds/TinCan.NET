@@ -21,23 +21,23 @@ namespace TinCan
 {
     public abstract class StatementBase : JsonModel
     {
-        private const String ISODateTimeFormat = "o";
+        const string ISODateTimeFormat = "o";
 
         public Agent actor { get; set; }
         public Verb verb { get; set; }
         public StatementTarget target { get; set; }
         public Result result { get; set; }
         public Context context { get; set; }
-        public Nullable<DateTime> timestamp { get; set; }
+        public DateTime? timestamp { get; set; }
 
-        public StatementBase() { }
-        public StatementBase(StringOfJSON json) : this(json.toJObject()) { }
+        protected StatementBase() { }
+        protected StatementBase(StringOfJSON json) : this(json.toJObject()) { }
 
-        public StatementBase(JObject jobj)
+        protected StatementBase(JObject jobj)
         {
             if (jobj["actor"] != null)
             {
-                if (jobj["actor"]["objectType"] != null && (String)jobj["actor"]["objectType"] == Group.OBJECT_TYPE)
+                if (jobj["actor"]["objectType"] != null && (string)jobj["actor"]["objectType"] == Group.OBJECT_TYPE)
                 {
                     actor = (Group)jobj.Value<JObject>("actor");
                 }
@@ -54,19 +54,19 @@ namespace TinCan
             {
                 if (jobj["object"]["objectType"] != null)
                 {
-                    if ((String)jobj["object"]["objectType"] == Group.OBJECT_TYPE)
+                    if ((string)jobj["object"]["objectType"] == Group.OBJECT_TYPE)
                     {
                         target = (Group)jobj.Value<JObject>("object");
                     }
-                    else if ((String)jobj["object"]["objectType"] == Agent.OBJECT_TYPE)
+                    else if ((string)jobj["object"]["objectType"] == Agent.OBJECT_TYPE)
                     {
                         target = (Agent)jobj.Value<JObject>("object");
                     }
-                    else if ((String)jobj["object"]["objectType"] == Activity.OBJECT_TYPE)
+                    else if ((string)jobj["object"]["objectType"] == Activity.OBJECT_TYPE)
                     {
                         target = (Activity)jobj.Value<JObject>("object");
                     }
-                    else if ((String)jobj["object"]["objectType"] == StatementRef.OBJECT_TYPE)
+                    else if ((string)jobj["object"]["objectType"] == StatementRef.OBJECT_TYPE)
                     {
                         target = (StatementRef)jobj.Value<JObject>("object");
                     }
@@ -92,36 +92,41 @@ namespace TinCan
 
         public override JObject ToJObject(TCAPIVersion version)
         {
-            JObject result = new JObject();
+            var resultObject = new JObject();
 
             if (actor != null)
             {
-                result.Add("actor", actor.ToJObject(version));
+                resultObject.Add("actor", actor.ToJObject(version));
             }
 
             if (verb != null)
             {
-                result.Add("verb", verb.ToJObject(version));
+                resultObject.Add("verb", verb.ToJObject(version));
             }
 
             if (target != null)
             {
-                result.Add("object", target.ToJObject(version));
+                resultObject.Add("object", target.ToJObject(version));
             }
             if (this.result != null)
             {
-                result.Add("result", this.result.ToJObject(version));
+                resultObject.Add("result", this.result.ToJObject(version));
             }
             if (this.context != null)
             {
-                result.Add("context", context.ToJObject(version));
+                resultObject.Add("context", context.ToJObject(version));
             }
             if (timestamp != null)
             {
-                result.Add("timestamp", timestamp.Value.ToString(ISODateTimeFormat));
+                resultObject.Add("timestamp", timestamp.Value.ToString(ISODateTimeFormat));
             }
 
-            return result;
+            return resultObject;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[StatementBase: actor={0}, verb={1}, target={2}, result={3}, context={4}, timestamp={5}]", actor, verb, target, result, context, timestamp);
         }
     }
 }

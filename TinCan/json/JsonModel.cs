@@ -13,7 +13,6 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */
-using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -21,7 +20,6 @@ namespace TinCan.Json
 {
     public abstract class JsonModel : IJsonModel
     {
-        // TODO: rename methods to ToJObject and ToJSON
         public abstract JObject ToJObject(TCAPIVersion version);
 
         public JObject ToJObject()
@@ -29,18 +27,13 @@ namespace TinCan.Json
             return ToJObject(TCAPIVersion.latest());
         }
 
-        public String ToJSON(TCAPIVersion version, Boolean pretty = false)
+        public string ToJSON(TCAPIVersion version, bool pretty = false)
         {
-            Formatting formatting = Formatting.None;
-            if (pretty)
-            {
-                formatting = Formatting.Indented;
-            }
-
+            var formatting = pretty ? Formatting.Indented : Formatting.None;
             return JsonConvert.SerializeObject(ToJObject(version), formatting);
         }
 
-        public String ToJSON(Boolean pretty = false)
+        public string ToJSON(bool pretty = false)
         {
             return ToJSON(TCAPIVersion.latest(), pretty);
         }

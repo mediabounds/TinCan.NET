@@ -66,5 +66,10 @@ namespace TinCan
         {
             return new AgentAccount(jobj);
         }
+
+        public override string ToString()
+        {
+            return string.Format("[AgentAccount: homePage={0}, name={1}]", homePage, name);
+        }
     }
 }

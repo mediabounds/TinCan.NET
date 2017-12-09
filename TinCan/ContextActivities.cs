@@ -63,7 +63,7 @@ namespace TinCan
         }
 
         public override JObject ToJObject(TCAPIVersion version) {
-            JObject result = new JObject();
+            var result = new JObject();
 
             if (parent != null && parent.Count > 0)
             {

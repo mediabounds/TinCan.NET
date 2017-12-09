@@ -18,6 +18,6 @@ namespace TinCan.LRSResponses
 {
     public class AboutLRSResponse : LRSResponse
     {
-        public TinCan.About content { set; get; }
+        public About content { set; get; }
     }
 }

@@ -21,13 +21,13 @@ namespace TinCan
 {
     public class Context : JsonModel
     {
-        public Nullable<Guid> registration { get; set; }
+        public Guid? registration { get; set; }
         public Agent instructor { get; set; }
         public Agent team { get; set; }
         public ContextActivities contextActivities { get; set; }
-        public String revision { get; set; }
-        public String platform { get; set; }
-        public String language { get; set; }
+        public string revision { get; set; }
+        public string platform { get; set; }
+        public string language { get; set; }
         public StatementRef statement { get; set; }
         public Extensions extensions { get; set; }
 
@@ -39,7 +39,7 @@ namespace TinCan
         {
             if (jobj["registration"] != null)
             {
-                registration = new Guid(jobj.Value<String>("registration"));
+                registration = new Guid(jobj.Value<string>("registration"));
             }
             if (jobj["instructor"] != null)
             {
@@ -57,15 +57,15 @@ namespace TinCan
             }
             if (jobj["revision"] != null)
             {
-                revision = jobj.Value<String>("revision");
+                revision = jobj.Value<string>("revision");
             }
             if (jobj["platform"] != null)
             {
-                platform = jobj.Value<String>("platform");
+                platform = jobj.Value<string>("platform");
             }
             if (jobj["language"] != null)
             {
-                language = jobj.Value<String>("language");
+                language = jobj.Value<string>("language");
             }
             if (jobj["statement"] != null)
             {
@@ -78,7 +78,7 @@ namespace TinCan
         }
 
         public override JObject ToJObject(TCAPIVersion version) {
-            JObject result = new JObject();
+            var result = new JObject();
 
             if (registration != null)
             {
@@ -123,6 +123,11 @@ namespace TinCan
         public static explicit operator Context(JObject jobj)
         {
             return new Context(jobj);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[Context: registration={0}", registration);
         }
     }
 }

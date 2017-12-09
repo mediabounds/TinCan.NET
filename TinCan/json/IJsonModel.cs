@@ -13,7 +13,6 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */
-using System;
 using Newtonsoft.Json.Linq;
 
 namespace TinCan.Json
@@ -23,7 +22,7 @@ namespace TinCan.Json
         JObject ToJObject(TCAPIVersion version);
         JObject ToJObject();
 
-        String ToJSON(TCAPIVersion version, Boolean pretty = false);
-        String ToJSON(Boolean pretty = false);
+        string ToJSON(TCAPIVersion version, bool pretty = false);
+        string ToJSON(bool pretty = false);
     }
 }

@@ -19,10 +19,10 @@ namespace TinCan.Documents
 {
     public abstract class Document
     {
-        public String id { get; set; }
-        public String etag { get; set; }
+        public string id { get; set; }
+        public string etag { get; set; }
         public DateTime timestamp { get; set; }
-        public String contentType { get; set; }
+        public string contentType { get; set; }
         public byte[] content { get; set; }
     }
 }

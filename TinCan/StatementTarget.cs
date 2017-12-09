@@ -22,7 +22,7 @@ namespace TinCan
     {
         JObject ToJObject(TCAPIVersion version);
 
-        String ObjectType
+        string ObjectType
         {
             get;
         }

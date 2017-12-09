@@ -18,6 +18,6 @@ namespace TinCan.LRSResponses
 {
     public class StateLRSResponse : LRSResponse
     {
-        public TinCan.Documents.StateDocument content { set; get; }
+        public Documents.StateDocument content { set; get; }
     }
 }

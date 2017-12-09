@@ -13,9 +13,6 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */
-using System;
-using System.Collections.Generic;
-
 namespace TinCan
 {
     public sealed class StatementsQueryResultFormat
@@ -24,14 +21,14 @@ namespace TinCan
         public static readonly StatementsQueryResultFormat EXACT = new StatementsQueryResultFormat("exact");
         public static readonly StatementsQueryResultFormat CANONICAL = new StatementsQueryResultFormat("canonical");
 
-        private String text;
+        readonly string text;
 
-        private StatementsQueryResultFormat(String value)
+        StatementsQueryResultFormat(string value)
         {
             text = value;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             return text;
         }

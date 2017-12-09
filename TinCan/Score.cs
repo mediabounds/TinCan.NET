@@ -21,10 +21,10 @@ namespace TinCan
 {
     public class Score : JsonModel
     {
-        public Nullable<Double> scaled { get; set; }
-        public Nullable<Double> raw { get; set; }
-        public Nullable<Double> min { get; set; }
-        public Nullable<Double> max { get; set; }
+        public double? scaled { get; set; }
+        public double? raw { get; set; }
+        public double? min { get; set; }
+        public double? max { get; set; }
 
         public Score() {}
 
@@ -51,7 +51,7 @@ namespace TinCan
         }
 
         public override JObject ToJObject(TCAPIVersion version) {
-            JObject result = new JObject();
+            var result = new JObject();
 
             if (scaled != null)
             {
@@ -76,6 +76,11 @@ namespace TinCan
         public static explicit operator Score(JObject jobj)
         {
             return new Score(jobj);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[Score: scaled={0}, raw={1}, min={2}, max={3}]", scaled, raw, min, max);
         }
     }
 }

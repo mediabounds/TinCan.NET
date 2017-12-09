@@ -22,10 +22,10 @@ namespace TinCan
 {
     public class Result : JsonModel
     {
-        public Nullable<Boolean> completion { get; set; }
-        public Nullable<Boolean> success { get; set; }
-        public String response { get; set; }
-        public Nullable<TimeSpan> duration { get; set; }
+        public bool? completion { get; set; }
+        public bool? success { get; set; }
+        public string response { get; set; }
+        public TimeSpan? duration { get; set; }
         public Score score { get; set; }
         public Extensions extensions { get; set; }
 
@@ -37,19 +37,19 @@ namespace TinCan
         {
             if (jobj["completion"] != null)
             {
-                completion = jobj.Value<Boolean>("completion");
+                completion = jobj.Value<bool>("completion");
             }
             if (jobj["success"] != null)
             {
-                success = jobj.Value<Boolean>("success");
+                success = jobj.Value<bool>("success");
             }
             if (jobj["response"] != null)
             {
-                response = jobj.Value<String>("response");
+                response = jobj.Value<string>("response");
             }
             if (jobj["duration"] != null)
             {
-                duration = XmlConvert.ToTimeSpan(jobj.Value<String>("duration"));
+                duration = XmlConvert.ToTimeSpan(jobj.Value<string>("duration"));
             }
             if (jobj["score"] != null)
             {
@@ -62,7 +62,7 @@ namespace TinCan
         }
 
         public override JObject ToJObject(TCAPIVersion version) {
-            JObject result = new JObject();
+            var result = new JObject();
 
             if (completion != null)
             {
@@ -95,6 +95,11 @@ namespace TinCan
         public static explicit operator Result(JObject jobj)
         {
             return new Result(jobj);
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[Result: completion={0}, success={1}, response={2}, duration={3}, score={4}, extensions={5}]", completion, success, response, duration, score, extensions);
         }
     }
 }

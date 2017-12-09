@@ -185,18 +185,24 @@ namespace TinCan
                 var response = await client.SendAsync(webReq).ConfigureAwait(false);
                 resp = new MyHTTPResponse(response);
             }
-            catch (HttpRequestException ex)
+            catch (WebException ex)
             {
-                resp = new MyHTTPResponse();
-
-                if (ex.Message != null)
+                if (ex.Response != null)
                 {
-                    resp.content = Encoding.UTF8.GetBytes(ex.Message);
-                    resp.contentType = "text/plain";
+                    resp = new MyHTTPResponse();
+
+                    using (var stream = ex.Response.GetResponseStream())
+                    {
+                        resp.content = ReadFully(stream, (int) ex.Response.ContentLength);
+                    }
+
+                    resp.contentType = ex.Response.ContentType;
+                    resp.ex = ex;
                 }
                 else
                 {
-                    resp.content = Encoding.UTF8.GetBytes("HttpRequestException without message");
+                    resp = new MyHTTPResponse();
+                    resp.content = Encoding.UTF8.GetBytes("Web exception without '.Response'");
                 }
                 resp.ex = ex;
             }
@@ -760,13 +766,11 @@ namespace TinCan
                 return r;
             }
 
-            profile.content = resp?.content;
-            profile.contentType = resp?.contentType;
-            profile.etag = resp?.etag;
-
             r.success = true;
-            r.content = profile;
-
+            r.content = new AgentProfileDocument();
+            r.content.content = resp?.content;
+            r.content.contentType = resp?.contentType;
+            r.content.etag = resp?.etag;
             return r;
         }
 

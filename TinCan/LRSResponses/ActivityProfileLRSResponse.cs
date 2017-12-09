@@ -18,6 +18,6 @@ namespace TinCan.LRSResponses
 {
     public class ActivityProfileLRSResponse : LRSResponse
     {
-        public TinCan.Documents.ActivityProfileDocument content { set; get; }
+        public Documents.ActivityProfileDocument content { set; get; }
     }
 }

@@ -93,5 +93,9 @@ namespace TinCan
         {
             return new ActivityDefinition(jobj);
         }
+
+        public static readonly Uri ModuleActivityType = new Uri("http://adlnet.gov/expapi/activities/module");
+        public static readonly Uri CourseActivityType = new Uri("http://adlnet.gov/expapi/activities/course");
+        public static readonly Uri ResourceActivityType = new Uri("http://id.tincanapi.com/activitytype/resource");
     }
 }

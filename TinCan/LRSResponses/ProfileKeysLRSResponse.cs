@@ -13,13 +13,12 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */
-using System;
 using System.Collections.Generic;
 
 namespace TinCan.LRSResponses
 {
     public class ProfileKeysLRSResponse : LRSResponse
     {
-        public List<String> content { set; get; }
+        public List<string> content { set; get; }
     }
 }
