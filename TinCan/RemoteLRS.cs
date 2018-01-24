@@ -149,25 +149,25 @@ namespace TinCan
 
             // We only have one client. We cannot modify it while its in use.
             await makeRequestSemaphore.WaitAsync();
-            client.DefaultRequestHeaders.Clear();
-            client.DefaultRequestHeaders.Add("X-Experience-API-Version", version.ToString());
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(req.contentType ?? "application/content-stream"));
+            //client.DefaultRequestHeaders.Clear();
+            webReq.Headers.Add("X-Experience-API-Version", version.ToString());
+            webReq.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(req.contentType ?? "application/content-stream"));
 
             if (auth != null)
             {
-                client.DefaultRequestHeaders.Add("Authorization", auth);
+                webReq.Headers.Add("Authorization", auth);
             }
             if (req.headers != null)
             {
                 foreach (var entry in req.headers)
                 {
-                    if (client.DefaultRequestHeaders.Contains(entry.Key))
+                    if (webReq.Headers.Contains(entry.Key))
                     {
                         makeRequestSemaphore.Release();
                         throw new InvalidOperationException($"Tried to add duplicate entry {entry.Key} to request headers with value {entry.Value}; previous value {client.DefaultRequestHeaders.GetValues(entry.Key)}");
                     }
 
-                    client.DefaultRequestHeaders.Add(entry.Key, entry.Value);
+                    webReq.Headers.Add(entry.Key, entry.Value);
                 }
             }
 
