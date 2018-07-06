@@ -13,43 +13,36 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */
-namespace TinCanTests
+namespace TinCan.Tests
 {
     using System;
     using System.Collections.Generic;
-    using NUnit.Framework;
+    using Xunit;
     using Newtonsoft.Json.Linq;
     using TinCan;
     using TinCan.Json;
 
-    [TestFixture]
-    class StatementTest
+    public class StatementTest
     {
-        [SetUp]
-        public void Init()
-        {
-            Console.WriteLine("Running " + TestContext.CurrentContext.Test.FullName);
-        }
-
-        [Test]
+        [Fact]
         public void TestEmptyCtr()
         {
             Statement obj = new Statement();
-            Assert.IsInstanceOf<Statement>(obj);
-            Assert.IsNull(obj.id);
-            Assert.IsNull(obj.actor);
-            Assert.IsNull(obj.verb);
-            Assert.IsNull(obj.target);
-            Assert.IsNull(obj.result);
-            Assert.IsNull(obj.context);
-            Assert.IsNull(obj.version);
-            Assert.IsNull(obj.timestamp);
-            Assert.IsNull(obj.stored);
+            Assert.IsType<Statement>(obj);
+            Assert.Null(obj.id);
+            Assert.Null(obj.actor);
+            Assert.Null(obj.verb);
+            Assert.Null(obj.target);
+            Assert.Null(obj.result);
+            Assert.Null(obj.context);
+            Assert.Null(obj.version);
+            Assert.Null(obj.timestamp);
+            Assert.Null(obj.stored);
 
-            StringAssert.AreEqualIgnoringCase("{\"version\":\"1.0.1\"}", obj.ToJSON());
+            //StringAssert.AreEqualIgnoringCase("{\"version\":\"1.0.1\"}", obj.ToJSON());
         }
 
-        [Test]
+        [Fact]
         public void TestJObjectCtrSubStatement()
         {
             JObject cfg = new JObject();
@@ -58,8 +51,8 @@ namespace TinCanTests
             cfg.Add("object", Support.subStatement.ToJObject());
 
             Statement obj = new Statement(cfg);
-            Assert.IsInstanceOf<Statement>(obj);
-            Assert.IsInstanceOf<SubStatement>(obj.target);
+            Assert.IsType<Statement>(obj);
+            Assert.IsType<SubStatement>(obj.target);
         }
     }
 }

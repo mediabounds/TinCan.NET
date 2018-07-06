@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{AF707E6C-AD93-4899-BA5B-349E3FC51490}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>TinCan</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)About.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Activity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ActivityDefinition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Agent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AgentAccount.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContextActivities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Group.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ILRS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LanguageMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LRSHttpRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LRSHttpResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RemoteLRS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Result.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Score.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Statement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StatementBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StatementRef.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StatementsQuery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StatementsQueryResultFormat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StatementsResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StatementTarget.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SubStatement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TCAPIVersion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Verb.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Documents\ActivityProfileDocument.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Documents\AgentProfileDocument.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Documents\Document.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Documents\StateDocument.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Json\IJsonModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Json\JsonModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Json\StringOfJSON.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LRSResponses\AboutLRSResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LRSResponses\ActivityProfileLRSResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LRSResponses\AgentProfileLRSResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LRSResponses\LRSResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LRSResponses\ProfileKeysLRSResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LRSResponses\StateLRSResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LRSResponses\StatementLRSResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LRSResponses\StatementsResultLRSResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Documents\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Json\" />
+    <Folder Include="$(MSBuildThisFileDirectory)LRSResponses\" />
+  </ItemGroup>
+</Project>

@@ -13,33 +13,32 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */
-namespace TinCanTests
+namespace TinCan.Tests
 {
-    using NUnit.Framework;
+    using Xunit;
     using TinCan;
 
-    [TestFixture]
-    class ActivityTest
+    public class ActivityTest
     {
-        [Test]
+        [Fact]
         public void TestActivityIdTrailingSlash()
         {
             var activity = new Activity();
             string noTrailingSlash = "http://foo";
             activity.id = noTrailingSlash;
-            Assert.AreEqual(noTrailingSlash, activity.id);
+            Assert.Equal(noTrailingSlash, activity.id);
         }
 
-        [Test]
+        [Fact]
         public void TestActivityIdCase()
         {
             var activity = new Activity();
             string mixedCase = "http://fOO";
             activity.id = mixedCase;
-            Assert.AreEqual(mixedCase, activity.id);
+            Assert.Equal(mixedCase, activity.id);
         }
 
-        [Test]
+        [Fact]
         public void TestActivityIdInvalidUri()
         {
             Assert.Throws<System.UriFormatException>(

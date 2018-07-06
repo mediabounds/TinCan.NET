@@ -1,4 +1,4 @@
-A C#/.NET library for implementing Tin Can API.
+﻿A C#/.NET library for implementing Tin Can API.
 
 For hosted API documentation, basic usage instructions, supported version listing, etc. visit the main project website at:
 

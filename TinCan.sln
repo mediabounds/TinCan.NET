@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinCan", "TinCan\TinCan.csproj", "{27D0FCA1-E869-440C-9D16-F62D7A068C53}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Float.TinCan.Tests", "Float.TinCan.Tests\Float.TinCan.Tests.csproj", "{854413C2-2F81-4A82-9949-DE2868A10078}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinCanTests", "TinCanTests\TinCanTests.csproj", "{854413C2-2F81-4A82-9949-DE2868A10078}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Float.TinCan.Shared", "Float.TinCan.Shared\Float.TinCan.Shared.shproj", "{AF707E6C-AD93-4899-BA5B-349E3FC51490}"
 EndProject
-Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Doc", "Doc\Doc.shfbproj", "{F8D803AD-A192-4F8C-A582-674B75E42995}"
+Project("{5DD5E4FA-CB73-4610-85AB-557B54E96AA9}") = "Float.TinCan.NuGet", "Float.TinCan.NuGet\Float.TinCan.NuGet.nuproj", "{E7CB40D6-2C6E-4E7A-B90E-FF22E33825D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Float.TinCan.Library", "Float.TinCan.Library\Float.TinCan.Library.csproj", "{2889D7B0-2DE9-49FE-A168-7292346730F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,24 +16,28 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{27D0FCA1-E869-440C-9D16-F62D7A068C53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27D0FCA1-E869-440C-9D16-F62D7A068C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27D0FCA1-E869-440C-9D16-F62D7A068C53}.Documentation|Any CPU.ActiveCfg = Documentation|Any CPU
-		{27D0FCA1-E869-440C-9D16-F62D7A068C53}.Documentation|Any CPU.Build.0 = Documentation|Any CPU
-		{27D0FCA1-E869-440C-9D16-F62D7A068C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27D0FCA1-E869-440C-9D16-F62D7A068C53}.Release|Any CPU.Build.0 = Release|Any CPU
 		{854413C2-2F81-4A82-9949-DE2868A10078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{854413C2-2F81-4A82-9949-DE2868A10078}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{854413C2-2F81-4A82-9949-DE2868A10078}.Documentation|Any CPU.ActiveCfg = Documentation|Any CPU
 		{854413C2-2F81-4A82-9949-DE2868A10078}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{854413C2-2F81-4A82-9949-DE2868A10078}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F8D803AD-A192-4F8C-A582-674B75E42995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8D803AD-A192-4F8C-A582-674B75E42995}.Documentation|Any CPU.ActiveCfg = Documentation|Any CPU
-		{F8D803AD-A192-4F8C-A582-674B75E42995}.Documentation|Any CPU.Build.0 = Documentation|Any CPU
-		{F8D803AD-A192-4F8C-A582-674B75E42995}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8D803AD-A192-4F8C-A582-674B75E42995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7CB40D6-2C6E-4E7A-B90E-FF22E33825D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7CB40D6-2C6E-4E7A-B90E-FF22E33825D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7CB40D6-2C6E-4E7A-B90E-FF22E33825D4}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7CB40D6-2C6E-4E7A-B90E-FF22E33825D4}.Documentation|Any CPU.Build.0 = Debug|Any CPU
+		{E7CB40D6-2C6E-4E7A-B90E-FF22E33825D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7CB40D6-2C6E-4E7A-B90E-FF22E33825D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2889D7B0-2DE9-49FE-A168-7292346730F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2889D7B0-2DE9-49FE-A168-7292346730F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2889D7B0-2DE9-49FE-A168-7292346730F6}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
+		{2889D7B0-2DE9-49FE-A168-7292346730F6}.Documentation|Any CPU.Build.0 = Debug|Any CPU
+		{2889D7B0-2DE9-49FE-A168-7292346730F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2889D7B0-2DE9-49FE-A168-7292346730F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		version = 1.0.4
 	EndGlobalSection
 EndGlobal

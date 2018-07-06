@@ -13,20 +13,19 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */
-namespace TinCanTests
+namespace TinCan.Tests
 {
     using System;
-    using NUnit.Framework;
+    using Xunit;
     using TinCan;
 
-    [TestFixture]
-    class LanguageMapTest
+    public class LanguageMapTest
     {
-        [Test]
+        [Fact]
         public void TestEmptyCtr()
         {
             LanguageMap obj = new LanguageMap();
-            Assert.IsInstanceOf<LanguageMap>(obj);
+            Assert.IsType<LanguageMap>(obj);
         }
     }
 }
